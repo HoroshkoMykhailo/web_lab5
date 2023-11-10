@@ -13,9 +13,17 @@ function changeblocks(){
         alert('Can`t find blocks');
     }
 }
+function calculateParallelogramArea(base, height) {
+    return base * height;
+}
 async function main(){
     await sleep(2000);
     changeblocks();
+    var baseLength = 10;
+    var heightLength = 5;
+    var area = calculateParallelogramArea(baseLength, heightLength);
+    var block = document.querySelector('.block5');
+    block.innerHTML += "<p>Area of parallelogram is: " + area + "</p>";
 }
 main();
 
