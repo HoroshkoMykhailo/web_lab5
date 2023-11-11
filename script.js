@@ -35,8 +35,19 @@ class Digits{
         alert('Maximum digit: ' + maxDigit);
     }
 }
+function deleteAllCookies() {
+    const cookies = document.cookie.split(";");
+
+    for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i];
+        const eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+}
 function getCookie(){
     alert(document.cookie + "\nCookies will be deleted after you press OK.");
+    deleteAllCookies();
     alert("Cookies deleted.");
 }
 async function main(){
