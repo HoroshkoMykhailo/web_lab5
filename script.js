@@ -21,13 +21,19 @@ function ifenter(e){
         e.preventDefault();
     }
 }
-function findMaxDigit() {
-    var formElement = document.getElementById('numberForm');
-    var inputElement = formElement.elements['number'];
-    var inputValue = inputElement.value;
-    var maxDigit = Math.max(...inputValue.split('').map(Number));
-    document.cookie = 'maxDigit=' + maxDigit + ';';
-    alert('Maximum digit: ' + maxDigit);
+class digits{
+    constructor(){
+        this.iterator = 0;
+    }
+    findMaxDigit(){
+        var formElement = document.getElementById('numberForm');
+        var inputElement = formElement.elements['number'];
+        var inputValue = inputElement.value;
+        var maxDigit = Math.max(...inputValue.split('').map(Number));
+        document.cookie = 'maxDigit' + this.iterator + '=' + maxDigit + ';';
+        this.iterator += 1;
+        alert('Maximum digit: ' + maxDigit);
+    }
 }
 function getCookie(){
     alert(document.cookie + "\nCookies will be deleted after you press OK.");
