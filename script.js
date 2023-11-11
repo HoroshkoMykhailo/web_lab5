@@ -16,6 +16,22 @@ function changeblocks(){
 function calculateParallelogramArea(base, height) {
     return base * height;
 }
+function ifenter(e){
+    if(e.keyCode === 13){
+        e.preventDefault();
+    }
+}
+function findMaxDigit() {
+    var formElement = document.getElementById('numberForm');
+    var inputElement = formElement.elements['number'];
+    var inputValue = inputElement.value;
+    var maxDigit = Math.max(...inputValue.split('').map(Number));
+    document.cookie = 'maxDigit=' + maxDigit + ';';
+    alert('Maximum digit: ' + maxDigit);
+}
+function getCookie(){
+    alert(document.cookie);
+}
 async function main(){
     await sleep(2000);
     changeblocks();
