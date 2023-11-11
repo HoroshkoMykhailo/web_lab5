@@ -21,7 +21,7 @@ function ifenter(e){
         e.preventDefault();
     }
 }
-class digits{
+class Digits{
     constructor(){
         this.iterator = 0;
     }
@@ -48,5 +48,6 @@ async function main(){
     var block = document.querySelector('.block5');
     block.innerHTML += "<p>Area of parallelogram is: " + area + "</p>";
 }
+const digits = new Digits();
 main();
 
