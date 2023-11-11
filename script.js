@@ -30,7 +30,8 @@ function findMaxDigit() {
     alert('Maximum digit: ' + maxDigit);
 }
 function getCookie(){
-    alert(document.cookie);
+    alert(document.cookie + "\nCookies will be deleted after you press OK.");
+    alert("Cookies deleted.");
 }
 async function main(){
     await sleep(2000);
