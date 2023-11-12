@@ -12,6 +12,17 @@ function changeblocks(){
     } else {
         alert('Can`t find blocks');
     }
+    block3.innerHTML += '<form>' +
+    '<label>' +
+        '<input type="radio" name="alignment" value="left"> Align Left' + 
+    '</label>' + 
+    '<label>' + 
+        '<input type="radio" name="alignment" value="center"> Align center' +
+    '</label>' +
+   '<label>' + 
+        '<input type="radio" name="alignment" value="right"> Align Right' +
+    '</label>' +
+    '</form>';
 }
 function calculateParallelogramArea(base, height) {
     return base * height;
@@ -50,6 +61,16 @@ function getCookie(){
     deleteAllCookies();
     alert("Cookies deleted.");
 }
+function setAlign(block){
+    RadioButton = document.querySelector('input[name="alignment"]:checked');
+    if (RadioButton) {
+        const alignment = document.querySelector('input[name="alignment"]:checked').value;
+        block.style.textAlign = alignment;
+        const blockClass = block.classList[0];
+        localStorage.setItem(`alignment_${blockClass}`, alignment);
+    }
+}
+
 async function main(){
     await sleep(2000);
     changeblocks();
@@ -58,6 +79,14 @@ async function main(){
     var area = calculateParallelogramArea(baseLength, heightLength);
     var block = document.querySelector('.block5');
     block.innerHTML += "<p>Area of parallelogram is: " + area + "</p>";
+    const blocksToAlign = ['.block2', '.block4', '.block5'];
+    blocksToAlign.forEach(function(blockclass) {
+        const block = document.querySelector(blockclass);
+        alignment = localStorage.getItem(`alignment_${blockclass}`);
+        if (alignment) {
+            block.style.textAlign = alignment;
+        }        
+    });
 }
 const digits = new Digits();
 main();
