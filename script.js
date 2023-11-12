@@ -61,9 +61,11 @@ function deleteAllCookies() {
     }
 }
 function getCookie(){
-    alert(document.cookie + "\nCookies will be deleted after you press OK.");
-    deleteAllCookies();
-    alert("Cookies deleted.");
+        if(document.cookie !== ''){
+        alert(document.cookie + "\nCookies will be deleted after you press OK.");
+        deleteAllCookies();
+        alert("Cookies deleted.");
+    }
 }
 function setAlign(block){
     RadioButton = document.querySelector('input[name="alignment"]:checked');
