@@ -66,7 +66,7 @@ function setAlign(block){
     if (RadioButton) {
         const alignment = document.querySelector('input[name="alignment"]:checked').value;
         block.style.textAlign = alignment;
-        const blockClass = block.classList[0];
+        const blockClass = '.' +  block.classList[0];
         localStorage.setItem(`alignment_${blockClass}`, alignment);
     }
 }
