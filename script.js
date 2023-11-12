@@ -24,6 +24,13 @@ function changeblocks(){
     '</label>' +
     '</form>';
 }
+function setArea(){
+    var baseLength = 7;
+    var heightLength = 4;
+    var area = calculateParallelogramArea(baseLength, heightLength);
+    var block = document.querySelector('.block5');
+    block.innerHTML += "<p>Area of parallelogram is: " + area + "</p>";
+}
 function calculateParallelogramArea(base, height) {
     return base * height;
 }
@@ -32,14 +39,11 @@ function ifenter(e){
         e.preventDefault();
     }
 }
-class Digits{
-    constructor(){
-        this.iterator = 0;
-    }
-    findMaxDigit(){
-        var formElement = document.getElementById('numberForm');
-        var inputElement = formElement.elements['number'];
-        var inputValue = inputElement.value;
+function findMaxDigit(){
+    var formElement = document.getElementById('numberForm');
+    var inputElement = formElement.elements['number'];
+    var inputValue = inputElement.value;
+    if (inputValue.trim() !== "") {
         var maxDigit = Math.max(...inputValue.split('').map(Number));
         document.cookie = 'maxDigit' + this.iterator + '=' + maxDigit + ';';
         this.iterator += 1;
@@ -70,15 +74,7 @@ function setAlign(block){
         localStorage.setItem(`alignment_${blockClass}`, alignment);
     }
 }
-
-async function main(){
-    await sleep(2000);
-    changeblocks();
-    var baseLength = 10;
-    var heightLength = 5;
-    var area = calculateParallelogramArea(baseLength, heightLength);
-    var block = document.querySelector('.block5');
-    block.innerHTML += "<p>Area of parallelogram is: " + area + "</p>";
+function to_align(){
     const blocksToAlign = ['.block2', '.block4', '.block5'];
     blocksToAlign.forEach(function(blockclass) {
         const block = document.querySelector(blockclass);
@@ -88,6 +84,55 @@ async function main(){
         }        
     });
 }
-const digits = new Digits();
+class orderedList{
+    constructor(){
+        this.counter = 1;
+        this.orderlist = [];
+    }
+    setForm(block) {
+        var selectedText = window.getSelection().toString();
+        if (selectedText !== "" && document.getElementById('listForm') === null) {
+            block.innerHTML += "<form id='listForm'>" +
+                "<label for='item'>Element of list:</label>" +
+                "<input type='text' id='item' name='item' required>" +
+                "<button type='button' onclick='list.addItem()'>Add</button>" +
+                "<button type='button' onclick='list.saveList()'>Save</button>" +
+                "<h4>Ordered list:</h2>" +
+                "</form>" +
+                "<ol id='outputList'></ol>";
+        }
+    }
+    addItem() {
+        var newItem = document.getElementById("item").value;
+        document.getElementById("item").value = '';
+        var outputList = document.getElementById("outputList");
+        var listItem = document.createElement("li");
+        var listI = this.counter + '. ' + newItem;
+        this.orderlist.push(listI);
+        listItem.appendChild(document.createTextNode(listI));
+        this.counter++;
+        outputList.appendChild(listItem);
+    }
+    saveList(){
+        var listAsString = JSON.stringify(this.orderlist);
+        localStorage.setItem('orderedList', listAsString);
+        alert("List is saved");
+    }
+    removeFromLocal(){
+        var InStorage = localStorage.getItem('orderedList');
+        if (InStorage !== null) {
+            localStorage.removeItem('orderedList');
+            alert("List is removed from localStorage");
+        }
+    }
+}
+async function main(){
+    await sleep(2000);
+    changeblocks();
+    setArea();
+    to_align();
+    list.removeFromLocal();
+}
+const list = new orderedList();
 main();
-
+var iterator = 0;

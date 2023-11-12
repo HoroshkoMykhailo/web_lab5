@@ -8,6 +8,8 @@ html, body {
 p{
     margin-left: 5%;
     margin-right: 5%;
+    margin-top: 1%;
+    margin-bottom: 2%;
 }
 .block1>h2{
     background-color: white;

@@ -57,3 +57,17 @@
 .block3>p{
     margin-bottom: 0;
 }
+#outputList {
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+#outputList li {
+    display: inline;
+    margin-left: 10px;
+}
+h4{
+    margin-bottom: 0;
+    margin-top: 2px;
+}
